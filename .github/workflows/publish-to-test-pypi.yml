@@ -36,10 +36,10 @@ jobs:
     outputs:
       version_changed: ${{ steps.version_check.outputs.version_changed }}
     steps:
-    - name: Get version from setup.py
+    - name: Get version from pyproject.toml
       id: version_check
       run: |
-        version=$(python3 -c "from setuptools import setup; print(setup().get('version'))")
+        version=$(python3 -c "import toml; print(toml.load('pyproject.toml')['tool']['poetry']['version'])")
         
         pypi_last_version=$(curl -s https://pypi.org/pypi/langchain-genezio/json | jq -r '.info.version')
         
@@ -49,7 +49,6 @@ jobs:
         echo "Last published version on PyPI: $pypi_last_version"
         echo "Last published version on TestPyPI: $testpypi_last_version"
         
-        # Dacă versiunea curentă este deja publicată pe oricare dintre platforme, nu continuăm
         if [ "$version" == "$pypi_last_version" ] || [ "$version" == "$testpypi_last_version" ]; then
           echo "Version has not been incremented. Skipping publish."
           echo "version_changed=false" >> $GITHUB_ENV
