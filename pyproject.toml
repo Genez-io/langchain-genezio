@@ -27,8 +27,8 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/Genezio/langchain-genezio"
-"Bug Tracker" = "https://github.com/Genezio/langchain-genezio/issues"
+"Homepage" = "https://github.com/Genez-io/langchain-genezio"
+"Bug Tracker" = "https://github.com/Genez-io/langchain-genezio/issues"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
