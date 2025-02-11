@@ -36,8 +36,12 @@ jobs:
     outputs:
       version_changed: ${{ steps.version_check.outputs.version_changed }}
     steps:
+    - name: Check if pyproject.toml exists
+      run: ls -la
+      working-directory: ./
     - name: Install toml
       run: python3 -m pip install toml
+      working-directory: ./
     - name: Get version from pyproject.toml
       id: version_check
       run: |
