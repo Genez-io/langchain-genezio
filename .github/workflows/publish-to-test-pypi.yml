@@ -36,6 +36,8 @@ jobs:
     outputs:
       version_changed: ${{ steps.version_check.outputs.version_changed }}
     steps:
+    - name: Install toml
+      run: python3 -m pip install toml
     - name: Get version from pyproject.toml
       id: version_check
       run: |
