@@ -1,1 +1,1 @@
-from .tool import GenezioPythonInterpreter
+from .tool import GenezioInterpreter
