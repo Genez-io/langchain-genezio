@@ -13,7 +13,7 @@ from typing_extensions import Annotated
 logger = logging.getLogger(__name__)
 
 
-class GenezioPythonInterpreterInput(BaseModel):
+class GenezioInterpreterInput(BaseModel):
     code: str = Field(description="code to be executed")
     dependencies: List[str] = Field(
         description="strings representing the dependencies needed to run the code"
@@ -21,7 +21,7 @@ class GenezioPythonInterpreterInput(BaseModel):
     state: Optional[Annotated[dict, InjectedState]]
 
 
-class GenezioPythonInterpreter(BaseTool):
+class GenezioInterpreter(BaseTool):
     name: str = "run_python_code_tool"
     description: str = """
     Run general purpose python code. This can be used to access Internet or do
@@ -31,7 +31,7 @@ class GenezioPythonInterpreter(BaseTool):
     the stdout, stderr and the files written by the code. The code should be
     written in a way that it can be executed in a single file.
     """
-    args_schema: Type[BaseModel] = GenezioPythonInterpreterInput
+    args_schema: Type[BaseModel] = GenezioInterpreterInput
     url: str = ""
 
     def __init__(
