@@ -36,6 +36,9 @@ jobs:
     outputs:
       version_changed: ${{ steps.version_check.outputs.version_changed }}
     steps:
+    - uses: actions/checkout@v4
+      with:
+        persist-credentials: false
     - name: Check if pyproject.toml exists
       run: ls -la
       working-directory: ./
@@ -45,6 +48,8 @@ jobs:
     - name: Get version from pyproject.toml
       id: version_check
       run: |
+        pwd
+        ls -la
         version=$(python3 -c "import toml; print(toml.load('pyproject.toml')['tool']['poetry']['version'])")
         
         pypi_last_version=$(curl -s https://pypi.org/pypi/langchain-genezio/json | jq -r '.info.version')
