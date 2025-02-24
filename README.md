@@ -14,7 +14,7 @@ pip install langchain-genezio
 from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain_anthropic import ChatAnthropic
 from langchain_core.prompts import ChatPromptTemplate
-from langchain-genezio import GenezioInterpreter
+from langchain_genezio import GenezioInterpreter
 
 tools = [
     GenezioInterpreter(
